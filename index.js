@@ -146,3 +146,23 @@ app.delete("/", (req, res) => {
 app.put("/", (req, res) => {
   console.log("Put at root directory");
 });
+
+app.put("/updatePlayer", (req, res) => {
+  console.log("Put at updatePlayer directory");
+  console.log(req.body.playerData);
+  const user = req.body.playerData.userName;
+  //console.log("New user name is: " + newUser);
+  let found = false;
+  //console.log("Loop of array");
+  for (let i = 0; i < users.length; i++) {
+    if (user === users[i].userName) {
+      found = true;
+      users[i] = req.body.playerData;
+    }
+  }
+  if (found) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
+});
