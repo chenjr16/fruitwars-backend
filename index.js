@@ -108,7 +108,7 @@ app.post("/addPlayer", (req, res) => {
 });
 
 app.post("/getPlayer", (req, res) => {
-  console.log("Post at addPlayer directory");
+  console.log("Post at getPlayer directory");
   //.log(req.body);
   const newUser = req.body.playerData.userName;
   //console.log("New user name is: " + newUser);
