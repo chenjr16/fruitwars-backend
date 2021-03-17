@@ -113,6 +113,29 @@ app.post("/addPlayer", (req, res) => {
   }
 });
 
+app.post("/getPlayer", (req, res) => {
+  console.log("Post at getPlayer directory");
+  //.log(req.body);
+  const newUser = req.body.playerData.userName;
+  //console.log("New user name is: " + newUser);
+  let found = false;
+  let index = -1;
+  //console.log("Loop of array");
+  for (let i = 0; i < users.length; i++) {
+    //console.log(users[i]);
+    if (newUser === users[i].userName) {
+      found = true;
+      index = i;
+      break;
+    }
+  }
+  if (found) {
+    res.send(200).send(users[i]);
+  } else {
+    res.sendStatus(500);
+  }
+});
+
 // Delete
 app.delete("/", (req, res) => {
   console.log("Delete at root directory");
