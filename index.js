@@ -67,7 +67,8 @@ app.listen(PORT, () => {
 */
 
 // Get
-app.get("/", (req, res) => {
+app.get("/players", (req, res) => {
+  console.log("sending player info");
   res.send(players);
 });
 
