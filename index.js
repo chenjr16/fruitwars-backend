@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 8080;
 {
   userName: name,
   money: money,
+  days: days,
   inventory: {
     pineapple: pineappleCount,
     apples: appleCount,
@@ -78,6 +79,11 @@ app.get("/leaderboard", (req, res) => {
 app.get("/prices", (req, res) => {
   console.log("sending prices");
   res.send(prices);
+});
+
+app.get("/users", (req, res) => {
+  console.log("send user info");
+  res.send(users);
 });
 
 // Post
