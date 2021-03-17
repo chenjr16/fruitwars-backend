@@ -9,6 +9,11 @@ const players = [
     days: "20",
     currentAmount: "6556",
   },
+  {
+    playerName: "player3",
+    days: "5",
+    currentAmount: "1M",
+  },
 ];
 
 //export
