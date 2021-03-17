@@ -109,9 +109,9 @@ app.post("/addPlayer", (req, res) => {
 
 app.post("/getPlayer", (req, res) => {
   console.log("Post at getPlayer directory");
-  //.log(req.body);
-  const newUser = req.body.playerData.userName;
-  //console.log("New user name is: " + newUser);
+  console.log(req.body);
+  const newUser = req.body.userName;
+  console.log("New user name is: " + newUser);
   let found = false;
   let index = -1;
   //console.log("Loop of array");
@@ -124,7 +124,7 @@ app.post("/getPlayer", (req, res) => {
     }
   }
   if (found) {
-    res.send(200).send(users[i]);
+    res.status(200).send(users[index]);
   } else {
     res.sendStatus(500);
   }
