@@ -188,3 +188,20 @@ app.put("/updatePlayer", (req, res) => {
     res.sendStatus(500);
   }
 });
+
+app.put("/updateLeaderboard", (req, res) => {
+  console.log("Put at leaderboard_db");
+  console.log(req.body.playerData);
+  const user = req.body.playerData.playerName;
+  let found = false;
+  for (let i = 0; i < players.length; i++) {
+    if (user === players[i].playerName) {
+      found = true;
+      players[i] = req.body.playerData;
+    }
+  }
+  if (!found) {
+    players.push(req.body.playerData);
+  }
+  res.sendStatus(200);
+});
