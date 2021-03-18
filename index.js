@@ -142,6 +142,28 @@ app.delete("/", (req, res) => {
   console.log("Delete at root directory");
 });
 
+app.delete("/removeActivePlayer", (req, res) => {
+  console.log("Delete at /removeActivePlayer directory");
+  console.log(req.body);
+  const user = req.body.userName;
+  let found = false;
+  let index = -1;
+  for (let i = 0; i < users.length; i++) {
+    if (user === users[i].userName) {
+      found = true;
+      index = i;
+      break;
+    }
+  }
+  if (found) {
+    users.splice(index, 1);
+    console.log(users);
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
+});
+
 // Put
 app.put("/", (req, res) => {
   console.log("Put at root directory");
