@@ -145,3 +145,17 @@ app.delete("/", (req, res) => {
 app.put("/", (req, res) => {
   console.log("Put at root directory");
 });
+
+app.put("/travel", (req, res) => {
+  const { userName, location } = req.body;
+  console.log(req.body);
+
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].userName === userName) {
+      users[i].day += 1;
+      users[i].location = location;
+    }
+  }
+  console.log(users);
+  res.status(200).json({ status: "success" });
+});
