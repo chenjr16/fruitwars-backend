@@ -67,7 +67,8 @@ app.listen(PORT, () => {
 */
 
 // Get
-app.get("/", (req, res) => {
+app.get("/players", (req, res) => {
+  console.log("sending player info");
   res.send(players);
 });
 
@@ -115,9 +116,9 @@ app.post("/addPlayer", (req, res) => {
 
 app.post("/getPlayer", (req, res) => {
   console.log("Post at getPlayer directory");
-  //.log(req.body);
-  const newUser = req.body.playerData.userName;
-  //console.log("New user name is: " + newUser);
+  console.log(req.body);
+  const newUser = req.body.userName;
+  console.log("New user name is: " + newUser);
   let found = false;
   let index = -1;
   //console.log("Loop of array");
@@ -130,7 +131,7 @@ app.post("/getPlayer", (req, res) => {
     }
   }
   if (found) {
-    res.send(200).send(users[i]);
+    res.status(200).send(users[index]);
   } else {
     res.sendStatus(500);
   }
@@ -158,4 +159,24 @@ app.put("/travel", (req, res) => {
   }
   console.log(users);
   res.status(200).json({ status: "success" });
+});
+
+app.put("/updatePlayer", (req, res) => {
+  console.log("Put at updatePlayer directory");
+  console.log(req.body.playerData);
+  const user = req.body.playerData.userName;
+  //console.log("New user name is: " + newUser);
+  let found = false;
+  //console.log("Loop of array");
+  for (let i = 0; i < users.length; i++) {
+    if (user === users[i].userName) {
+      found = true;
+      users[i] = req.body.playerData;
+    }
+  }
+  if (found) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
 });
